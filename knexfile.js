@@ -1,8 +1,6 @@
 // Update with your config settings.
 
-import type { Knex } from 'knex';
-
-export const development: Knex.Config = {
+export const development = {
 	client: 'mysql',
 	connection: {
 		database: 'smartbeans2',
@@ -17,7 +15,8 @@ export const development: Knex.Config = {
 		tableName: 'knex_migrations'
 	}
 };
-export const production: Knex.Config = {
+
+export const production = {
 	client: 'mysql',
 	connection: {
 		database: 'smartbeans',
