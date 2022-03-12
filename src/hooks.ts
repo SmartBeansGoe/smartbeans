@@ -47,3 +47,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   return await resolve(event);
 };
+
+export const getSession: GetSession = async ({ locals }) => {
+  return {
+    user: locals.user,
+    course: locals.course
+  };
+};
