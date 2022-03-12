@@ -1,3 +1,8 @@
+
+export const expirationTime = () => {
+  return new Date().getTime() + config.sessionDuration * 1000;
+};
+
 export const generateToken = (length: number) => {
   const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var result = '';
