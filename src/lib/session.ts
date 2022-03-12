@@ -4,6 +4,22 @@ import type { Course } from '$lib/utils/types/course';
 import type { SessionData } from '$lib/utils/types/session';
 import type { UserRow, UserSession } from '$lib/utils/types/user';
 
+export const createSession = async (username: string, course: string, tokenName = null) => {
+  let token: string = generateToken(config.TOKEN_LENGTH);
+  try {
+    await database.table('sessions').insert({
+      token: token,
+      username: username,
+      courseName: course,
+      expirationTime: expirationTime(),
+      tokenName: tokenName
+    });
+  } catch (err) {
+    throw new Error('Database Error during the creation of a session.');
+  }
+
+  return token;
+};
 
 export const expirationTime = () => {
   return new Date().getTime() + config.sessionDuration * 1000;
