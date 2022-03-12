@@ -5,6 +5,13 @@ export const generateToken = (length: number) => {
   return result;
 };
 
+export class WrongFormatError extends Error {
+  constructor(msg: string) {
+    super(msg);
+    Object.setPrototypeOf(this, WrongFormatError.prototype);
+  }
+}
+
 export class InvalidError extends Error {
   constructor(msg: string) {
     super(msg);
