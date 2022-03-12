@@ -5,3 +5,9 @@ export const generateToken = (length: number) => {
   return result;
 };
 
+export class InvalidError extends Error {
+  constructor(msg: string) {
+    super(msg);
+    Object.setPrototypeOf(this, InvalidError.prototype);
+  }
+}
