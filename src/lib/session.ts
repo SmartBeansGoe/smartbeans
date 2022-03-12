@@ -1,3 +1,9 @@
+import config from '$config';
+import database from '$lib/database/database';
+import type { Course } from '$lib/utils/types/course';
+import type { SessionData } from '$lib/utils/types/session';
+import type { UserRow, UserSession } from '$lib/utils/types/user';
+
 
 export const expirationTime = () => {
   return new Date().getTime() + config.sessionDuration * 1000;
