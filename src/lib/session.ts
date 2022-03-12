@@ -5,6 +5,16 @@ export const generateToken = (length: number) => {
   return result;
 };
 
+export const courseConfiguration = async (course: string): Promise<Course> => {
+  let courseData: Course = await database
+    .table('courses')
+    .where({ name: course })
+    .select('name', 'title', 'config')
+    .first();
+
+  return courseData;
+};
+
 export class WrongFormatError extends Error {
   constructor(msg: string) {
     super(msg);
