@@ -3,6 +3,14 @@ export const expirationTime = () => {
   return new Date().getTime() + config.sessionDuration * 1000;
 };
 
+export const courseExists = async (course: string) => {
+  try {
+    return (await database.table('courses').select('name').where({ name: course })).length > 0;
+  } catch (err) {
+    throw new Error('Database Error');
+  }
+};
+
 export const generateToken = (length: number) => {
   const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var result = '';
