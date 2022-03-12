@@ -40,6 +40,28 @@ export const generateToken = (length: number) => {
   return result;
 };
 
+export const userCredentials = async (token: string): Promise<UserSession> => {
+  let sessionData: SessionData = await validateToken(token);
+
+  let userData: UserRow = await database
+    .table('users')
+    .where({ username: sessionData.username })
+    .select('*')
+    .first();
+
+  let credentials = {
+    username: userData.username,
+    displayName: userData.displayName,
+    passwordSet: userData.password !== null,
+    ltiEnabled: userData.ltiEnabled,
+    activeCourse: sessionData.courseName,
+    expirationTime: sessionData.expirationTime,
+    avatar: userData.avatar
+  };
+
+  return credentials;
+};
+
 export const courseConfiguration = async (course: string): Promise<Course> => {
   let courseData: Course = await database
     .table('courses')
