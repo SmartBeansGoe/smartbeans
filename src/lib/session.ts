@@ -40,6 +40,25 @@ export const generateToken = (length: number) => {
   return result;
 };
 
+export const validateToken = async (token: string): Promise<SessionData> => {
+  if (token.length != config.TOKEN_LENGTH) {
+    throw new WrongFormatError('Token length incorrect!');
+  }
+  const sessionRows: SessionData[] = await database
+    .table('sessions')
+    .where({ token: token })
+    .select('username', 'courseName', 'expirationTime');
+
+  if (sessionRows.length !== 1) {
+    throw new InvalidError('Invalid token');
+  }
+  let sessionData: SessionData = sessionRows[0];
+  if (sessionData.expirationTime < new Date().getTime()) {
+    throw new InvalidError('Token expired');
+  }
+  return sessionData;
+};
+
 export const userCredentials = async (token: string): Promise<UserSession> => {
   let sessionData: SessionData = await validateToken(token);
 
