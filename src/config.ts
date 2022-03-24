@@ -1,9 +1,7 @@
 export default {
   sessionDuration: 43200,
-  staticAchievementPath: '/img/achievements',
-  staticAchievementFilePath: '/img/achievements/achievements.json',
-  staticAssetPath: '/img/assets',
-  staticAssetFilePath: '/img/assets/assets.json',
+  staticAchievementPath: '/achievements',
+  staticAssetPath: '/assets',
   padUrl: 'change-me',
   sandboxUrl: 'change-me',
   achievementUrl: 'change-me',
