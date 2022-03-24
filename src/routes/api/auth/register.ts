@@ -8,7 +8,7 @@
  * {
  *   "username": <String>,
  *   "password": <String>,
- *   "displayName": <String>
+ *   "displayName?": <String>
  * }
  * ```
  *
