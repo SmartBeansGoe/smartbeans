@@ -1,4 +1,5 @@
 import database from '$lib/database/database';
+import { getRandomColor } from '../color';
 import { passwordHash } from './password';
 
 export const createUser = async (
@@ -22,7 +23,7 @@ const createUserWithoutPassword = async (
       username: username,
       displayName: displayName,
       ltiEnabled: true,
-      avatar: { hat: null, pants: null, shirt: null, skin: '#012934' }
+      avatar: { hat: null, pants: null, shirt: null, skin: getRandomColor() }
     });
     return true;
   } catch (e) {
@@ -42,7 +43,7 @@ const createUserWithPassword = async (
       password: hash,
       ltiEnabled: false,
       displayName: displayName,
-      avatar: { hat: null, pants: null, shirt: null, skin: '#012934' }
+      avatar: { hat: null, pants: null, shirt: null, skin: getRandomColor() }
     });
     return true;
   } catch (e) {
