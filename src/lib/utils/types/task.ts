@@ -55,5 +55,5 @@ export type TaskPost = yup.InferType<typeof schemaTaskPost>;
 export const schemaCourseTask = schemaTask.concat(schemaCourseTaskMetaData);
 export type CourseTask = yup.InferType<typeof schemaCourseTask>;
 
-export type TaskLanguage = 'c' | 'python' | 'java';
-export type TaskFileEnd = '.c' | '.py' | '.java';
+export type TaskLanguage = 'c' | 'python' | 'java' | 'plaintext';
+export type TaskFileEnd = '.c' | '.py' | '.java' | '.txt';
