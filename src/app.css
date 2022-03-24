@@ -3,7 +3,51 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-	@apply bg-gray-500;
+.task-card {
+  @apply rounded-lg;
+  animation: task-card-pop var(--animation-btn, 0.25s) ease-out;
+}
+.task-card:active:hover,
+.task-card:active:focus {
+  animation: none;
+}
+.task-card:active:hover,
+.task-card:active:focus {
+  transform: scale(0.98);
+}
+
+@keyframes task-card-pop {
+  0% {
+    transform: scale(0.98);
+  }
+  40% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+  cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  cursor: row-resize;
+}
+
+pre {
+  @apply p-4 bg-base-200 rounded-xl overflow-x-auto;
+}
+
+h3 {
+  @apply py-1 font-bold;
 }
