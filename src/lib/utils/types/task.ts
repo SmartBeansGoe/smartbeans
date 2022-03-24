@@ -34,7 +34,8 @@ export const schemaCourseTaskMetaData = yup.object({
   course: yup.string().required(),
   tags: yup.array(schemaTag).required(),
   orderBy: yup.number().required(),
-  prerequisites: yup.array(schemaCondition).required()
+  prerequisites: yup.array(schemaCondition).required(),
+  unlockableAssets: yup.array().of(yup.string())
 });
 export type CourseTaskMetaData = yup.InferType<typeof schemaCourseTaskMetaData>;
 
