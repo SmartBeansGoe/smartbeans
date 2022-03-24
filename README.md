@@ -1,40 +1,105 @@
-# create-svelte
+# SmartBeans v3
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Installation instructions
 
-## Creating a project
+### Prerequisites
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Install `npm` `nodejs`.
+- Install `mysql`
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+### Installation
 
-# create a new project in my-app
-npm init svelte@next my-app
+1. Clone the repository.
+2. Create a database and database user:
+   - mysql
+   ```sql
+   CREATE DATABASE smartbeans;
+   CREATE USER 'user'@'localhost' IDENTIFIED BY 'change-this-password';
+   GRANT ALL PRIVILEGES ON smartbeans . * TO 'user'@'localhost';
+   ```
+   - Configure `knexfile.js`
+     - change db url
+     - change probably the port number
+     - add database name
+     - add database user
+     - add database user password
+3. Configure the following on `src/config.ts`:
+
+```js
+export default {
+  sessionDuration: 43200,
+  staticAchievementPath: '/achievements',
+  staticAssetPath: '/assets',
+  padUrl: 'url-to-hedgedoc',
+  sandboxUrl: 'url-to-sandbox',
+  achievementUrl: 'url-to-achievement-checker',
+  registrationKeys: ['change-me'],
+  apiKeys: ['change-me'],
+  TOKEN_LENGTH: 36,
+  ltiConsumerSecret: 'secret',
+  leaderboardUsersLastSubmissionTimeout: 1000 * 60 * 60 * 24 * 30
+};
 ```
 
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+4. Initialize the node_modules via running:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm install
 ```
 
-## Building
+5. Add assets
 
-To create a production version of your app:
+- Clone the smartbeans-content repository.
+- Run:
+  1. `cd smartbeans-content`
+  2. `python src/generate-output.py`
+  3. `cp out/assets smartbeans/static/assets
 
-```bash
+6. Build smartbeans
+
+```
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+7. Create a systemd service `smartbeans.service`:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```toml
+[Unit]
+Description=The SmartBeans Backend
+After=network.target
+
+[Service]
+Type=simple
+User=change-me
+Group=change-me
+WorkingDirectory=path-to-smartbeans-build-folder
+ExecStart=node index.js --port 8080
+Restart=on-failure
+# Other restart options: always, on-abort, etc
+
+[Install]
+WantedBy=multi-user.target
+```
+
+8. Start the service:
+
+```
+systemctl start smartbeans.service
+```
+
+9. Insert asset ids into smartbeans
+   Go in the smartbeans-content repository and run the following:
+
+```
+python pipeline.py --url https://smartbeans-domain.tld/api/admin/asset --admin-api-key apikey --data out/assets-backend.json
+```
+
+### Updates
+
+For updates call `git pull`, build smartbeans and restart the service.
+
+## License
+
+Copyright (c) 2021 Ole Umlauft and other contributors
+
+All contents of this repository are provided under the MIT License. See [LICENSE](https://github.com/SmartBeansGoe/smartbeans/blob/main/LICENSE) for the full text.
