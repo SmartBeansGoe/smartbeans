@@ -12,12 +12,16 @@ export type Submission = {
       exitCode: number;
     };
     testCase?: {
+      message?: string;
+      stdin?: string;
       stdout?: string;
       expectedStdout?: string;
       exitCode: number;
     };
   };
-  details: object;
+  details: {
+    error: string;
+  };
   score: number;
 };
 
