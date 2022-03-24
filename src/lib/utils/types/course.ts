@@ -1,46 +1,59 @@
 import * as yup from 'yup';
 
-export type LevelUnitType = 'tasks' | 'points';
 export const schemaCourseConfig = yup.object().shape({
   gamification: yup
     .object({
       achievements: yup
         .object({
-          onDashboard: yup.boolean().required()
+          active: yup.boolean().required()
         })
-        .default(null)
-        .nullable(),
+        .required(),
       avatar: yup
         .object({
-          onDashboard: yup.boolean().required()
+          active: yup.boolean().required()
         })
-        .default(null)
-        .nullable(),
+        .required(),
       leaderboard: yup
         .object({
-          onDashboard: yup.boolean().required()
+          active: yup.boolean().required()
         })
-        .default(null)
-        .nullable(),
+        .required(),
       level: yup
         .object({
-          onDashboard: yup.boolean().required(),
-          unitName: yup.string().required(),
-          unit: yup.mixed<LevelUnitType>().oneOf(['tasks', 'points'])
+          points: yup
+            .object({
+              active: yup.boolean().required(),
+              unitName: yup.string().required(),
+              levels: yup.array().of(yup.number())
+            })
+            .required(),
+          tasks: yup
+            .object({
+              active: yup.boolean().required(),
+              unitName: yup.string().required()
+            })
+            .required()
         })
-        .default(null)
-        .nullable(),
+        .required(),
       skillgraph: yup
         .object({
-          onDashboard: yup.boolean().required()
+          active: yup.boolean().required()
         })
-        .default(null)
-        .nullable()
+        .required()
     })
     .required(),
   tasks: yup
     .object({
       editor: yup.boolean().required(),
+      nextExercise: yup
+        .object({
+          dashboard: yup
+            .object({
+              active: yup.boolean().required()
+            })
+            .required()
+        })
+        .required(),
       unfulfilledPrerequisites: yup
         .object({
           blockedTaskByUnfulfilledPrerequisites: yup.boolean().required(),
@@ -77,23 +90,3 @@ export type CourseMappingRow = {
   courseName: string;
   studipId: string;
 };
-// {
-//   "gamification": {
-//     "avatar": {
-//       "onDashboard": true
-//     },
-//     "level": {
-//       "onDashboard": false,
-//       "unit": "tasks",
-//       "unitName": "Aufgaben"
-//     }
-//   },
-//   "tasks": {
-//     "blockedTaskByUnfulfilledPrerequisites": false,
-//     "editor": false,
-//     "standardView": {
-//       "categorizeByTags": ["einfach", "mittel", "schwer"],
-//       "title": "Aufgaben"
-//     }
-//   }
-// }
