@@ -1,5 +1,11 @@
 # SmartBeans v3
 
+## What is SmartBeans?
+
+SmartBeans is a gamified learning platform for programming languages.
+![](https://github.com/SmartBeansGoe/smartbeans/blob/main/screenshots/dashboard.png)
+More screenshots ![here](https://github.com/SmartBeansGoe/smartbeans/blob/main/screenshots)!
+
 ## Installation instructions
 
 ### Prerequisites
