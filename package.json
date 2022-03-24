@@ -46,6 +46,7 @@
     "chart.js": "^3.7.1",
     "cookie": "^0.4.2",
     "daisyui": "^2.4.0",
+    "dompurify": "^2.3.6",
     "highlight.js": "^11.4.0",
     "knex": "^1.0.3",
     "lodash": "^4.17.21",
