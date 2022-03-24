@@ -28,7 +28,7 @@ export type AchievementType = 'locked' | 'unlocked';
 
 export type AchievementUnlockedRow = {
   achievementId: number;
-  username: string;
+  user: string;
   unlocked: number;
 };
 
