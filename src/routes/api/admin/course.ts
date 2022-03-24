@@ -9,7 +9,7 @@ export const post: RequestHandler = async ({ request }) => {
 
   // Validate body data
   try {
-    course = await schemaCourse.validate(body);
+    course = await schemaCourse.validate(body, { stripUnknown: true });
   } catch (error) {
     if (error instanceof yup.ValidationError) {
       return { status: 400, body: JSON.stringify(error.errors) };
