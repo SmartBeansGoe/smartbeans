@@ -4,8 +4,6 @@
     "paths": {
       "$lib": ["src/lib"],
       "$lib/*": ["src/lib/*"],
-      "$stores": ["src/stores"],
-      "$stores/*": ["src/stores/*"],
       "$config": ["src/config.ts"]
     },
     "typeRoots": ["./nodemodules/@types", "./src/utils/types", "./src/database"]
