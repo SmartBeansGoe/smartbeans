@@ -16,6 +16,7 @@ exports.up = function (knex) {
     table.jsonb('tags').notNullable().defaultTo([]);
     table.integer('orderBy').notNullable().defaultTo(0);
     table.jsonb('prerequisites').notNullable().defaultTo([]);
+    table.jsonb('unlockableAssets').notNullable().defaultTo([]);
   })
 };
 
