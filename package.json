@@ -39,7 +39,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@oi2/ims-lti": "^3.0.4",
     "@types/color": "^3.0.3",
     "@zerodevx/svelte-toast": "^0.7.1",
     "argon2": "^0.28.5",
