@@ -5,6 +5,10 @@
   <slot />
 </div>
 
+<svelte:head>
+  <title>SmartBeans</title>
+</svelte:head>
+
 <style>
   .backdrop {
     background-image: url('/smartbeans-logo.png');
