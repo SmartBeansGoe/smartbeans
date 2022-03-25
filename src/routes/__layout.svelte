@@ -43,6 +43,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>SmartBeans</title>
+</svelte:head>
+
 {#if course && user}
   <Drawer bind:open={$drawer} {course}>
     <NavBar {course} {user} bind:burger={$drawer} />
