@@ -25,7 +25,7 @@
 
 <Card {title} centered={true}>
   <div class="grid grid-cols-1 place-items-center gap-4 w-full">
-    <img src="/static/images/leaderboard_badge.png" width="200" height="200" alt="" />
+    <img src="/images/leaderboard_badge.png" width="200" height="200" alt="" />
     <div class="w-full max-w-2xl">
       <Leaderboard course={$session.course} {leaders} max={leaders.length} />
     </div>
