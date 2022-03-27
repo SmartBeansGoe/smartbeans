@@ -101,7 +101,7 @@
             <h3>Resultat:</h3>
             {submissions[active].resultType}
           </div>
-          {#if submissions[active].details.error}
+          {#if submissions[active].details && submissions[active].details.error}
             <Code lang="plaintext" code={submissions[active].details.error} />
           {/if}
           <div class="flex items-center gap-2">
