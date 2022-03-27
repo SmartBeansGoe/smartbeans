@@ -53,7 +53,19 @@ export default {
 npm install
 ```
 
-5. Add assets
+5. Install knex-cli
+
+```
+npm install knex -g
+```
+
+6. Run migrations
+
+```
+knex --esm migrate:latest
+```
+
+7. Add assets
 
 - Clone the smartbeans-content repository.
 - Run:
@@ -61,13 +73,13 @@ npm install
   2. `python src/generate-output.py`
   3. `cp out/assets smartbeans/static/assets
 
-6. Build smartbeans
+8. Build smartbeans
 
 ```
 npm run build
 ```
 
-7. Create a systemd service `smartbeans.service`:
+9. Create a systemd service `smartbeans.service`:
 
 ```toml
 [Unit]
@@ -79,7 +91,7 @@ Type=simple
 User=change-me
 Group=change-me
 WorkingDirectory=path-to-smartbeans-build-folder
-ExecStart=node index.js --port 8080
+ExecStart=PORT=8080 node index.js
 Restart=on-failure
 # Other restart options: always, on-abort, etc
 
@@ -87,14 +99,14 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-8. Start the service:
+10. Start the service:
 
 ```
 systemctl start smartbeans.service
 ```
 
-9. Insert asset ids into smartbeans
-   Go in the smartbeans-content repository and run the following:
+11. Insert asset ids into smartbeans
+    Go in the smartbeans-content repository and run the following:
 
 ```
 python pipeline.py --url https://smartbeans-domain.tld/api/admin/asset --admin-api-key apikey --data out/assets-backend.json
