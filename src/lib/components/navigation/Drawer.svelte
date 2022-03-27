@@ -18,7 +18,7 @@
     <ul class="menu p-4 overflow-y-auto w-60 bg-base-100 text-base-content">
       <!-- Sidebar content here -->
       <div class="relative flex flex-wrap justify-center">
-        <img class="w-20 h-20" alt="" src="/static/smartbeans-logo.png" />
+        <img class="w-20 h-20" alt="" src="/smartbeans-logo.png" />
         <p class="w-full text-center text-base font-bold -mb-2">SmartBeans</p>
       </div>
 
