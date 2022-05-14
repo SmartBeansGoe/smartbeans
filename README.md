@@ -11,7 +11,7 @@ More screenshots ![here](https://github.com/SmartBeansGoe/smartbeans/blob/main/s
 ### Prerequisites
 
 - Install `npm` `nodejs`.
-- Install `mysql`
+- Install `postgres`
 
 ### Installation
 
